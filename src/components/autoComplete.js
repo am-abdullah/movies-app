@@ -2,8 +2,10 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { MovieDetails } from "./movieDetails";
+import { useMediaQuery } from "@mui/material";
 
 export function SearchAutoComplete({ currentRating, currentGenre }) {
+  const isMobile = useMediaQuery("(max-width:750px)");
   const [initialData] = React.useState([
     { title: "The Matrix", rating: 7.5, genre: "Action" },
     { title: "Focus", rating: 6.9, genre: "Comedy" },
@@ -35,7 +37,7 @@ export function SearchAutoComplete({ currentRating, currentGenre }) {
       onFocus={handleFilterFilms}
       onBlur={() => setFilms(initialData)}
       id="movie-select-demo"
-      sx={{ width: 600 }}
+      sx={{ width: isMobile ? "97%" : 600 }}
       options={films}
       autoHighlight
       getOptionLabel={(option) => option.title}

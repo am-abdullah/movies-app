@@ -6,21 +6,23 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
+  useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
 import { RatingComponent } from "./rating";
 
-const MenuProps = {
-  PaperProps: {
-    style: {
-      width: 250,
-      marginLeft: 50,
-    },
-  },
-};
-
 export function RatingSearch({ currentRating, setCurrentRating }) {
   const [ratings] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const isMobile = useMediaQuery("(max-width:750px)");
+
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        width: 250,
+        marginLeft: isMobile ? 0 : 50,
+      },
+    },
+  };
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -28,7 +30,7 @@ export function RatingSearch({ currentRating, setCurrentRating }) {
   };
 
   return (
-    <FormControl sx={{ width: 150 }}>
+    <FormControl sx={{ width: isMobile ? "97%" : 150 }}>
       <InputLabel id="mutiple-select-label">Rating</InputLabel>
       <Select
         labelId="mutiple-select-label"

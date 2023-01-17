@@ -6,6 +6,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
+  useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
 
@@ -18,6 +19,7 @@ const MenuProps = {
 };
 
 export function GenreSearch({ currentGenre, setCurrentGenre }) {
+  const isMobile = useMediaQuery("(max-width:750px)");
   const [genres] = useState([
     "Any Genre",
     "Action",
@@ -27,7 +29,7 @@ export function GenreSearch({ currentGenre, setCurrentGenre }) {
   ]);
 
   return (
-    <FormControl sx={{ width: 150 }}>
+    <FormControl sx={{ width: isMobile ? "97%" : 150 }}>
       <InputLabel id="demo-multiple-checkbox-label">Genre</InputLabel>
       <Select
         labelId="demo-multiple-checkbox-label"
